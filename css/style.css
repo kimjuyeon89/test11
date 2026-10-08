@@ -1,0 +1,119 @@
+@charset "utf-8";
+body { margin: 0; }
+.intro-wrap, .intro-wrap * { box-sizing: border-box; }
+.intro-wrap { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; min-height: 100svh; padding-block: 32px; background: #fff; font-family: "Pretendard", "Malgun Gothic", sans-serif; line-height: 1.5; }
+.intro-header, .intro-main, .intro-footer { flex: none; }
+.intro-wrap a { color: inherit; text-decoration: none; }
+.intro-wrap img { display: block; max-width: 100%; }
+.intro-wrap a:focus-visible { outline: 3px solid #005fcc; outline-offset: 5px; }
+.intro-wrap .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.intro-wrap .intro-skip { position: fixed; top: 12px; left: 16px; z-index: 10; padding: 12px 20px; background: #fff; color: #005fcc; transform: translateY(-200%); }
+.intro-skip:focus { transform: none; }
+.intro-inner { width: min(1400px, calc(100% - 48px)); margin-inline: auto; }
+
+.intro-main { padding-bottom: clamp(28px, 6.1vh, 70px); }
+.intro-cards { display: flex; gap: 20px; }
+.intro-item { position: relative; flex: 700 1 0; min-width: 0; padding-top: calc(58px + clamp(28px, 4.35vh, 50px)); }
+.intro-logo { position: absolute; top: 0; left: 0; display: flex; align-items: center; width: max-content; max-width: 100%; height: 58px; }
+.intro-logo img { width: auto; max-height: 58px; }
+.intro-card { position: relative; display: flex; flex-direction: column; min-width: 0; height: 500px; padding: 48px 52px 42px; overflow: hidden; border-radius: 16px 16px 56px 16px; isolation: isolate; transition: box-shadow .3s ease; }
+.intro-cards:not(:focus-within):not(:has(.intro-item:hover)) > .intro-item:first-child .intro-card, .intro-item:focus-within .intro-card, .intro-item:hover .intro-card { box-shadow: 3.5px 6.1px 18px 0 rgba(0, 0, 0, .2); }
+.intro-card-bg, .intro-card::before { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; }
+.intro-card-bg { z-index: -2; object-fit: cover; }
+.intro-card::before { content: ""; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.intro-copy { overflow-wrap: anywhere; word-break: keep-all; }
+.intro-copy h2 { margin: 0; font-size: 32px; line-height: 1.35; transition: font-size .5s ease, color .3s; font-weight: 600; }
+.intro-copy p { margin: 18px 0 32px; font-size: 18px; font-weight: 600; }
+.intro-wrap .intro-button { display: inline-flex; flex: none; align-items: center; justify-content: space-between; gap: 20px; width: 170px; min-height: 48px; margin-top: auto; padding: 10px 30px; border-radius: 30px; background: #fff; font-weight: 700; }
+.intro-button::after { content: ""; flex: none; width: 14px; height: 10px; background-color: currentColor; -webkit-mask: url("/images/intro/ico-arrow.svg") center / contain no-repeat; mask: url("/images/intro/ico-arrow.svg") center / contain no-repeat; }
+@media (hover: hover) and (pointer: fine) {
+  .intro-card:hover .intro-button { animation: intro-button-float 1.2s ease-in-out infinite; }
+}
+@keyframes intro-button-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* 사회적농업 */
+.intro-card.social { background: #d2e2a8; }
+.intro-card .intro-card-visual { position: absolute; inset: 0; z-index: -2; overflow: hidden; border-radius: inherit; }
+.intro-card .intro-card-bg { inset: 8% auto auto -2%; width: 1077px; height: auto; max-width: none; border-radius: 0; object-position: 50% 50%; transform-origin: top left; transform: scale(1) translateX(0); transition: top .5s ease, left .5s ease, transform .5s ease; }
+.intro-card.social h2 { color: #56672a; }
+.intro-card.social p { color: #7d8c59; }
+.intro-card.social::before { background: #7d8c59; }
+.intro-card.social .intro-button { color: #08773e; }
+
+/* 농촌재능나눔 */
+.intro-card.sharing { background: #e3d3c7; }
+.intro-card.sharing h2 { color: #6f4d27; }
+.intro-card.sharing p { color: #6e5131; }
+.intro-card.sharing::before { background: #785d37; }
+.intro-card.sharing .intro-button { color: #805021; }
+
+/* 교육훈련기관 */
+.intro-card.edu { background: linear-gradient(to right, #d3d5e0, #c6c6ce); }
+.intro-card.edu h2 { color: #234f72; }
+.intro-card.edu p { color: #355b78; }
+.intro-card.edu::before { background: #003460; }
+.intro-card.edu .intro-button { color: #13577e; }
+.intro-card.edu .intro-card-bg { width: 1116px; inset: -16% auto auto -19%; }
+
+@supports selector(:has(*)) and selector(&) {
+  @media (min-width: 1100px) {
+    .intro-item { flex: 0 1 700px; max-width: 700px; transition: flex-basis .5s ease; }
+    .intro-card { padding: 0; overflow: visible; }
+    .intro-card::after { content: ""; position: absolute; inset: 0 -10px; z-index: -1; }
+    .intro-item:first-child .intro-card::after { left: 0; }
+    .intro-item:last-child .intro-card::after { right: 0; }
+    .intro-card .intro-copy { position: absolute; top: 48px; right: 52px; left: 52px; transition: top .5s ease, right .5s ease, left .5s ease, color .3s; }
+    .intro-card p { transition: margin .5s ease, font-size .5s ease, color .3s; }
+    .intro-card .intro-button { position: absolute; bottom: 42px; left: 52px; transition: opacity .2s; }
+    .intro-cards:has(.intro-item:focus-within) > .intro-item:not(:focus-within), .intro-cards:not(:focus-within):has(.intro-item:hover) > .intro-item:not(:hover), .intro-cards:not(:focus-within):not(:has(.intro-item:hover)) > .intro-item:not(:first-child) { flex-basis: 330px; }
+    .intro-cards:has(.intro-item:focus-within) > .intro-item:not(:focus-within) .intro-card, .intro-cards:not(:focus-within):has(.intro-item:hover) > .intro-item:not(:hover) .intro-card, .intro-cards:not(:focus-within):not(:has(.intro-item:hover)) > .intro-item:not(:first-child) .intro-card {
+      & .intro-card-bg { top: 0; left: 50%; transform: scale(.825083) translateX(-50%); }
+      &.edu .intro-card-bg { top: 0; left: 50%; width: auto; height: 100%; transform: translateX(-50%); }
+      &::before { opacity: .7; }
+      & .intro-copy { top: 150px; right: 24px; left: 24px; text-align: center; }
+      & h2 { font-size: 30px; height: 80px; }
+      & p { margin: 32px 0 0; font-size: 16px; }
+      &.social h2 { color: #fff; }
+      &.social .intro-title-line { display: block; }
+      &.social p { color: #dce9c2; }
+      &.sharing h2 { color: #fff; display: flex; align-items: center; justify-content: center; }
+      &.sharing p { color: #ebd0aa; }
+      &.edu h2 { color: #fff; }
+      &.edu p { color: #abd3f7; }
+      & .intro-button { opacity: 0; pointer-events: none; }
+    }
+  }
+}
+.intro-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 44px; }
+.intro-footer p { margin: 0; color: #444444; font-size: 14px; }
+.intro-partners { display: flex; align-items: center; gap: 28px; }
+.intro-partners a { display: flex; align-items: center; min-height: 44px; }
+.intro-partners img { width: auto; max-height: 28px; }
+@media (max-width: 1099px) {
+  .intro-cards { flex-direction: column; gap: 40px; }
+  .intro-item { flex: none; padding-top: 70px; }
+  .intro-card { flex: none; height: auto; min-height: clamp(400px, 52vw, 560px); padding: 32px; }
+  .intro-card .intro-card-bg { inset: -2% auto auto -2%; }
+  .intro-card .intro-card-bg { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%); mask-image: linear-gradient(to bottom, transparent 0%, #000 18%); }
+  .intro-footer-inner, .intro-partners { flex-wrap: wrap; justify-content: center; text-align: center; }
+  .intro-card.edu .intro-card-bg { width: 1400px; inset: -42% auto auto -30%; }
+}
+@media (max-width: 520px) {
+  .intro-inner { width: calc(100% - 32px); }
+  .intro-item { padding-top: 54px; }
+  .intro-logo { height: 42px; }
+  .intro-logo img { max-height: 42px; }
+  .intro-card { min-height: 360px; padding: 28px 24px; }
+  .intro-copy h2 { font-size: 23px; }
+  .intro-copy p { font-size: 16px; }
+   .intro-card .intro-card-bg { width: 524px; inset: 28% auto auto -2%; }
+  .intro-card.edu .intro-card-bg { width: 844px; inset: -8% auto auto -50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-item, .intro-card, .intro-card::before, .intro-card .intro-copy, .intro-copy h2, .intro-card p, .intro-card .intro-button, .intro-card .intro-card-bg { transition: none; }
+  .intro-card:hover .intro-button { animation: none; }
+}
